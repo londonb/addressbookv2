@@ -2,22 +2,21 @@ function Contact(firstName,lastName) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.addresses = [];
+  this.pets = [];
 }
 
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
 
-function Address(street, city, state, addressTypes) {
+function Address(street, city, state) {
   this.street = street;
   this.city = city;
   this.state = state;
-  this.addressTypes = addressTypes;
-  this.pets = [];
 }
 
 Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state + ", " + this.addressTypes;
+  return this.street + ", " + this.city + ", " + this.state;
 }
 
 function Pet(name, type, color) {
@@ -76,11 +75,11 @@ $(document).ready(function() {
     });
 
     $(".new-pets").each(function() {
-      var inputtedName = $("input .new-name").val();
-      var inputtedPetType = $("input .new-petType").val();
-      var inputtedColor = $("input .new-color").val();
+      var inputtedName = $(".new-name").val();
+      var inputtedPetType = $(".new-petType").val();
+      var inputtedColor = $(".new-color").val();
       var newPet = new Pet(inputtedName, inputtedPetType, inputtedColor);
-      newContact.addresses.pets.push(newPet)
+      newContact.pets.push(newPet);
     });
 
     $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
@@ -94,6 +93,11 @@ $(document).ready(function() {
       newContact.addresses.forEach(function(address) {
         $("ul#addresses").append("<li>" + address.fullAddress() + "</li>");
       });
+      $("ul#pets").text("");
+      newContact.pets.forEach(function(pet) {
+        $("ul#pets").append("<li>" + pet.fullPets() + "</li>");
+      });
+
     });
 
     resetFields();

@@ -18,16 +18,24 @@ describe('Address', function() {
     expect(testAddress.street).to.equal("123 Main St");
     expect(testAddress.city).to.equal("Test City");
     expect(testAddress.state).to.equal("Test State");
-    expect(testAddress.addressType).to.equal("Home");
+    expect(testAddress.addressTypes).to.equal("Home");
   });
 
   it("adds the fullAddress method to all addresses", function() {
     var testAddress = new Address("123 Main St", "Test City","Test State", "Home");
     expect(testAddress.fullAddress()).to.equal("123 Main St, Test City, Test State, Home");
   });
+});
 
-  // it("add address type to new addresses entered", function() {
-  //   var testType = new Type("Home", "Work","Mailing");
-  //   expect(testType.fullAddress()).to.equal("123 Main St, Test City, Test State");
-  // });
+describe('Pets', function(){
+  it("creates a new pet with the given specifications", function() {
+    var testPet = new Pet("Astro", "Dog", "Black");
+    expect(testPet.name).to.equal("Astro");
+    expect(testPet.type).to.equal("Dog");
+    expect(testPet.color).to.equal("Black");
+  });
+  it("adds the fullPets method to address", function() {
+    var testPet = new Pet("Astro", "Dog", "Black");
+    expect(testPet.fullPets()).to.equal("Astro, Dog, Black");
+  });
 });
